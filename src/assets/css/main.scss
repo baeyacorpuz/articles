@@ -1,0 +1,35 @@
+@charset 'UTF-8';
+
+// Google font
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+// Configuration and helpers
+@import 'abstracts/variables', 'abstracts/mixins';
+
+// Base stuff
+@import 'base/base', 'base/fonts', 'base/typography',
+  // 'base/bootstrap-utilities',
+    'base/helpers';
+
+// Vendor
+@import 'vendor/toast', 'vendor/material-overides'
+
+// Components
+// @import
+//   'components/forms',
+//   'components/table',
+//   'components/otp-form',
+//   'components/nav',
+//   'components/notification',
+//   'components/scrollable',
+//   'components/cards/card',
+//   'components/cards/loan',
+//   'components/cards/userAccount';
+
+// Page-specific styles
+// @import
+//   'pages/home';
+
+// body {
+//   background: linear-gradient(253deg, #0cc898, #1797d2, #864fe1);
+//   background-size: 300% 300%;

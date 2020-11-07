@@ -1,0 +1,24 @@
+// -----------------------------------------------------------------------------
+// This file contains very basic styles.
+// -----------------------------------------------------------------------------
+
+/**
+ * Set up a decent box model on the root element
+ */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+html {
+  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 1.625;
+
+  @include breakpoint(1290px, min) {
+    font-size: 16px;
+  }
+}
+div:focus {
+  outline: 0px;
+}

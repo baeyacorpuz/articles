@@ -1,0 +1,63 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+/// Base font family
+/// @type List
+$text-font: 'Inter', 'Arial', sans-serif !default;
+
+/// Text color
+/// @type Color
+$text-color: #2f3542 !default;
+
+/// Black
+/// @type Color
+$black: #000000 !default;
+
+/// Blue
+/// @type Color
+$blue: #2a3d99 !default;
+
+/// Dark Blue
+/// @type Color
+$dark-blue: #201751 !default;
+
+/// Light grey
+/// @type Color
+$light-grey: #909196 !default;
+
+/// Medium grey
+/// @type Color
+$mid-grey: #54575f !default;
+
+/// Dark grey
+/// @type Color
+$dark-grey: #2f3542 !default;
+
+/// White
+/// @type Color
+$white: #ffffff !default;
+
+/// Orange
+/// @type Color
+$orange: #ff9600 !default;
+
+/// System - Primary
+/// @type Color
+$primary: #41b67f !default;
+
+/// System - Success
+/// @type Color
+$success: #41b67f !default;
+
+/// System - Info
+/// @type Color
+$info: #3498db !default;
+
+/// System - Error
+/// @type Color
+$error: #e24c4c !default;
+
+/// System - Warning
+/// @type Color
+$warning: #ffc632 !default;

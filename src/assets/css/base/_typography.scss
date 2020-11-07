@@ -1,0 +1,71 @@
+/**
+ * Basic typography style for copy text
+ */
+body {
+  font-family: $text-font;
+  font-weight: 400;
+  color: $text-color;
+  background-color: #f4f6f9 !important;
+}
+
+h1,
+.h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  letter-spacing: 0;
+}
+
+h2,
+h2 {
+  font-size: 2.25rem;
+  font-weight: bold;
+  letter-spacing: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+h3,
+.h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 0;
+  margin-top: 0.25em;
+  color: $dark-grey;
+}
+
+h4,
+.h4 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+h5,
+.h5 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+  font-weight: 600;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+.header-subtitle {
+  font-weight: 400;
+}
+
+small {
+  font-size: 0.75rem;
+  line-height: 1.33;
+  // letter-spacing: -0.01em;
+}
+
+b,
+strong {
+  font-weight: 600;
+}

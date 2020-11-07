@@ -1,0 +1,314 @@
+body .MuiTableCell-root {
+  line-height: 1;
+  padding: 13px 18px;
+}
+body .MuiTableCell-head {
+  font-weight: 600;
+  background-color: #f4f6f9;
+  line-height: 1.35;
+}
+
+body .MuiPaper-elevation1 {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid #e0e6ed;
+}
+// button.MuiButtonBase-root {
+//   margin: 15px 0px;
+// }
+
+.cd-button-group-sorter button {
+  background: white;
+  color: #7f7f7f;
+  border: 1px solid #e0e6ed;
+  font-weight: 400;
+  border-radius: 0px;
+}
+button.cd-button-action {
+  margin: 0;
+  font-size: 14px;
+  padding: 3px 10px;
+  margin-top: -9px;
+  margin-bottom: -8px;
+  width: 100%;
+}
+body .MuiPaginationItem-page {
+  padding: 0;
+  height: 27px;
+  border-radius: 4px;
+  min-width: 27px;
+}
+.MuiPaginationItem-page.Mui-selected {
+  background-color: rgba(0, 0, 0, 0.08);
+  padding: 0;
+  background: #d1d5dd;
+}
+body main {
+  margin-top: 0px;
+  min-height: 100vh;
+  height: auto !important;
+}
+.main-content-wrapper {
+  width: 100%;
+}
+
+body .MuiPaper-root {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  // border-radius: 0;
+}
+.data-table-footer {
+  text-align: center;
+  padding: 10px;
+}
+
+.cd-status-label.status-for-receipt,
+.cd-status-label.status-for-deposit {
+  color: $orange;
+}
+
+.cd-status-label.status-cancelled {
+  color: $light-grey;
+}
+.cd-status-label.status-bounced {
+  color: $error;
+}
+.cd-status-label.status-clearing,
+.cd-status-label.status-cleared {
+  color: $primary;
+}
+
+//table
+.search-layout button.MuiButtonBase-root.MuiIconButton-root[class*='MUIDataTableSearch'] {
+  display: none;
+}
+.data-search-field .MuiTextField-root input {
+  position: relative;
+  z-index: 1;
+  padding-right: 38px;
+}
+.data-search-field {
+  position: relative;
+  width: auto;
+}
+.data-search-field svg.MuiSvgIcon-root {
+  position: absolute;
+  right: 14px;
+  z-index: 9;
+  top: 9px;
+  width: 23px;
+  height: auto;
+}
+
+label[for='total_amount'].MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl:after {
+  content: ' (Peso)';
+}
+label[for='total_amount'].MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl {
+  position: relative;
+  margin-bottom: -14px;
+}
+div[class*='MUIDataTableFilter-header'] {
+  margin-bottom: 0;
+}
+div[class*='MUIDataTableFilter-header'] p,
+div[class*='MUIDataTableFilter-header'] button {
+  margin: 0;
+}
+div[class*='MUIDataTableFilterList-root'] {
+  display: none;
+}
+
+table div[class*='MUIDataTableHeadCell-sortAction'] svg {
+  position: absolute;
+}
+
+.MuiButtonBase-root.MuiTableSortLabel-root svg {
+  display: none;
+}
+
+.MuiToolbar-root.MuiToolbar-regular {
+  min-height: 1px;
+  right: 0;
+  position: relative;
+}
+.MuiToolbar-root.MuiToolbar-regular div[class*='MUIDataTableToolbar-actions'] {
+  position: absolute;
+  right: 10px;
+  z-index: 101;
+  top: 13px;
+}
+.MuiToolbar-root.MuiToolbar-regular div[class*='MUIDataTableToolbar-actions'] button {
+  margin: 0;
+  padding: 0;
+}
+.MuiToolbar-root.MuiToolbar-regular div[class*='MUIDataTableToolbar-actions'] span.MuiIconButton-label svg {
+  display: none;
+}
+
+.MuiToolbar-gutters {
+  padding: 16px;
+}
+
+/*table sorting icons overrides */
+
+.MuiToolbar-root.MuiToolbar-regular div[class*='MUIDataTableToolbar-actions'] span.MuiIconButton-label {
+  background-image: url('/assets/img/icons/filter-icon.svg');
+  height: 16px;
+  width: 16px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+// .MuiButtonBase-root.MuiTableSortLabel-root:before {
+//   content: ' ';
+//   background-image: url('/assets/img/icons/sort-up.svg');
+//   height: 6px;
+//   width: 12px;
+//   background-size: contain;
+//   background-repeat: no-repeat;
+//   margin-left: 12px;
+//   display: block;
+//   width: 100%;
+//   opacity: 0.6;
+// }
+// .MuiButtonBase-root.MuiTableSortLabel-root:after {
+//   content: ' ';
+//   background-image: url('/assets/img/icons/sort-down.svg');
+//   height: 6px;
+//   width: 12px;
+//   background-size: contain;
+//   background-repeat: no-repeat;
+//   margin-left: 12px;
+//   display: block;
+//   width: 100%;
+//   margin-top: 3px;
+//   opacity: 0.6;
+// }
+th.MuiTableCell-root.MuiTableCell-head {
+  position: relative;
+}
+span.MuiButtonBase-root.MuiTableSortLabel-root {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+// th.MuiTableCell-root[aria-sort='ascending']
+//   .MuiButtonBase-root.MuiTableSortLabel-root:after {
+//   opacity: 1;
+// }
+
+// th.MuiTableCell-root[aria-sort='descending']
+//   .MuiButtonBase-root.MuiTableSortLabel-root:before {
+//   opacity: 1;
+// }
+
+/* empty table */
+.empty-table table tbody {
+  display: none;
+}
+.empty-table .data-table-footer {
+  height: 440px;
+  padding-top: 200px;
+  color: #2f3542;
+  opacity: 0.48;
+}
+.empty-table tfoot.MuiTableFooter-root {
+  display: none;
+}
+
+.mui-datatables-layout .MuiTableCell-paddingCheckbox {
+  padding: 0 !important;
+}
+.select-form-layout label {
+  margin-bottom: 7px;
+}
+.select-form-layout .MuiSelect-outlined.MuiSelect-outlined {
+  padding: 6px 12px;
+  padding-right: 32px;
+}
+body .main-content-wrapper {
+  padding-left: 15px;
+  width: calc(100% - 110px);
+  padding-right: 15px;
+}
+.top-menu .MuiToolbar-root.MuiToolbar-regular {
+  padding: 0px 10px;
+  padding-top: 10px;
+}
+.table-data-provider .MuiBackdrop-root {
+  z-index: 99999;
+}
+.rm-action-button-container {
+  text-align: right;
+}
+span.status-text {
+  font-weight: 600;
+  font-size: 16px;
+  border-left: #f8b344 solid 5.5px;
+  display: inline-block;
+  padding: 12px 23px;
+  background: #fef7ec;
+  border-radius: 4px;
+  line-height: 1;
+}
+.rm-action-button-container button.rm-more-button,
+.rm-action-button-container button.rm-less-button {
+  border-radius: 0px;
+  border: 0px;
+  background: none;
+  color: #41b67f;
+  font-weight: 300;
+  font-size: 10px;
+  font-style: normal;
+  text-decoration: underline;
+  outline: 0px !important;
+  cursor: pointer;
+}
+span.ba-status {
+  border-radius: 2px;
+  background: rgba(29, 210, 139, 0.24);
+  border-left: #1dd28b 4px solid;
+  font-weight: normal;
+  font-size: 12px;
+  padding: 6px 12px;
+}
+span.ba-status.deactivated,
+span.ba-status.Deactivated {
+  background: rgba(224, 230, 237, 0.34);
+  border-color: #a5b0be;
+}
+body::-webkit-scrollbar {
+  width: 5px;
+  height: 6px;
+  border-radius: 100px;
+}
+
+/* Track */
+body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+body::-webkit-scrollbar-thumb {
+  background: #888;
+  background: rgba(47, 53, 66, 0.4);
+  border-radius: 100px;
+}
+
+/* Handle on hover */
+body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.loading-data.mui-datatables-layout {
+  overflow: hidden;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+.date-picker-layout.input-field .MuiFormControl-root > div:after {
+  content: " ";
+}

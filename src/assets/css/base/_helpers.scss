@@ -1,0 +1,79 @@
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+.img-responsive {
+  width: 100%;
+  max-width: 100%;
+}
+
+// Font Weights
+.fw-500 {
+  font-weight: 500 !important;
+}
+
+.fw-600 {
+  font-weight: 600 !important;
+}
+
+.fw-700 {
+  font-weight: 700 !important;
+}
+
+// Text Colors
+.text-default {
+  color: $text-color !important;
+}
+
+.text-primary {
+  color: $primary !important;
+}
+
+.text-success {
+  color: $success !important;
+}
+
+.text-danger {
+  color: $error !important;
+}
+
+.text-warning {
+  color: $warning !important;
+}
+
+.text-info {
+  color: $info !important;
+}
+
+.text-muted {
+  color: $light-grey !important;
+}
+
+.place-right {
+  float: right;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.allcaps {
+  text-transform: uppercase;
+}
+
+.text-right {
+  text-align: right;
+}
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+span.amount-layout {
+  display: flex;
+  justify-content: space-between;
+}

@@ -2,29 +2,7 @@
 
 ## Description
 
-* You are given a maximum of 3 days to complete this project (See instructions below).
-* You need to fork this repository into your own repository
-* Once done, please send your git repository to [simon.bacsain@alchemy.tech](mailto:simon.bacsain@alchemy.tech)
-
-## Instructions
-
-* Create a "Social Media" like UI using the following technologies
-    * ReactJS
-    * Any CSS Framework of your choice
-* Key Functions:
-    * CRUD (Create, Update, Delete) Posts or Comments
-    * UI Structure
-    * Responsive Design
-    * Data handling
-* Use any of the OpenAPIs below:
-    * http://jsonplaceholder.typicode.com/guide.html
-    * https://github.com/public-apis/public-apis
-    * Or any other public API of your choice
-* You are allowed to add any npm packages as you wish.
-* **_Optional:_** Deploy to any free hosting like  [Heroku](https://www.heroku.com/), [Render](https://render.com), or any platform you wish
-
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* On the .env file, you can input the API KEY from newsapi.org
 
 ## Available Scripts
 

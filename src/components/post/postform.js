@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { Button, Container, Grid } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import { Form } from 'react-final-form';
 import { TextField } from 'mui-rff'
 import { createPost, getPost, updatePost } from '../../apis/posts';
@@ -18,6 +18,7 @@ const PostForm = (editMode) => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setIsLoading(false);
     const loadInitialFormData = async () => {
       if (params.id) {

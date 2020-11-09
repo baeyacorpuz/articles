@@ -1,4 +1,4 @@
-import { Container, Grid, makeStyles } from '@material-ui/core';
+import { Container, Grid, Hidden, makeStyles } from '@material-ui/core';
 import React from 'react';
 import { HashRouter as Router } from 'react-router-dom';
 import './App.css';
@@ -45,7 +45,9 @@ const App = () => {
                   <RouteBlock />
                 </Grid>
                 <Grid item md={4}>
-                  <Sidenav />
+                  <Hidden xsDown implementation="css">
+                    <Sidenav />
+                  </Hidden>
                 </Grid>
               </Grid>
             </Container>

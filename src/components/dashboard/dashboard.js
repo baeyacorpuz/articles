@@ -1,12 +1,11 @@
-import { ClickAwayListener, Grid, Grow, IconButton, makeStyles, MenuItem, MenuList, Paper, Popper, Typography } from '@material-ui/core';
-import { MoreVert } from '@material-ui/icons';
+import { Fade, Grid, IconButton, makeStyles, MenuItem, MenuList, Paper, Popper, Typography } from '@material-ui/core';
+import { MoreHoriz } from '@material-ui/icons';
 import { Skeleton } from '@material-ui/lab';
-import React, { useRef } from 'react';
+import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Link, NavLink, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { deletePost, listPosts } from '../../apis/posts';
-import Sidenav from '../header/sidenav';
 
 const useStyles = makeStyles((theme) => ({
   post: {
@@ -29,23 +28,21 @@ const useStyles = makeStyles((theme) => ({
     },
     marginBottom: '1.5rem'
   },
-  paper: {
-    position: 'absolute',
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-    top: '30%',
-    left: '35%'
-  },
+  menuContainer: {
+    '& .MuiPaper-rounded': {
+      borderRadius: 7,
+      width: 250,
+      padding: theme.spacing(1, 0)
+    }
+  }
 }))
 
 const Dashboard = () => {
   const classes = useStyles();
   const history = useHistory();
   const [initialData, setInitialData] = useState(null);
-  const [open, setOpen] = useState(false);
-  const anchorRef = useRef(null);
+  const [anchorRef, setAnchorRef] = useState(null);
+  const [id, setId] = useState(null);
 
   useEffect(() => {
     loadInitialData();
@@ -55,33 +52,18 @@ const Dashboard = () => {
     setInitialData(await listPosts())
   }
 
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+  const handleToggle = (event, id) => {
+    setId(id)
+    setAnchorRef(anchorRef ? null : event.currentTarget);
   }
 
-  const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
+  const open = Boolean(anchorRef);
 
-    setOpen(false);
-  };
-
-  const handleListKeyDown = (event) => {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      setOpen(false);
-    }
+  const handleDelete = async () => {
+    console.log('here')
+    await(deletePost(id))
   }
 
-  const prevOpen = React.useRef(open);
-  useEffect(() => {
-    if (prevOpen.current === true && open === false) {
-      anchorRef.current.focus();
-    }
-
-    prevOpen.current = open;
-  }, [open]);
 
   return (
     <>
@@ -101,11 +83,10 @@ const Dashboard = () => {
                             <Typography color="primary" variant="body1">{post.title}</Typography>
                           </Link>
                           <IconButton size="small"
-                            ref={anchorRef}
                             aria-controls={open ? 'menu-list-grow' : undefined}
                             aria-haspopup="true"
-                            onClick={handleToggle}>
-                            <MoreVert />
+                            onClick={(event) => handleToggle(event, post.id)}>
+                            <MoreHoriz />
                           </IconButton>
                         </div>
                         <Typography variant="caption" gutterBottom>{post.body}</Typography>
@@ -127,20 +108,32 @@ const Dashboard = () => {
             </Grid>
           </Grid>
         )}
-      <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-          >
+      <Popper
+        id={id}
+        open={open}
+        anchorEl={anchorRef}
+        role={undefined}
+        transition
+        disablePortal
+        placement="bottom-end"
+        className={classes.menuContainer}>
+        {({ TransitionProps }) => (
+          <Fade {...TransitionProps} timeout={350}>
             <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                  <MenuItem onClick={handleClose}>Profile</MenuItem>
-                </MenuList>
-              </ClickAwayListener>
+              <MenuList>
+                <MenuItem onClick={() => history.push(`/update/${id}`)}>
+                  <Typography variant="overline">
+                    Edit post
+                </Typography>
+                </MenuItem>
+                <MenuItem onClick={() => handleDelete(id)}>
+                  <Typography variant="overline">
+                    Delete post
+                </Typography>
+                </MenuItem>
+              </MenuList>
             </Paper>
-          </Grow>
+          </Fade>
         )}
       </Popper>
     </>

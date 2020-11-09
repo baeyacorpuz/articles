@@ -14,6 +14,11 @@ body .MuiPaper-elevation1 {
   border: 1px solid #e0e6ed;
 }
 
+body .MuiPaper-elevation4 {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
 body .MuiPaginationItem-page {
   padding: 0;
   height: 27px;

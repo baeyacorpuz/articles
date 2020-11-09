@@ -41,48 +41,46 @@ const PostForm = (editMode) => {
 
   return (
     <>
-      <Container maxWidth="lg">
-        {initialValues && !loading ? (
-          <Form
-            onSubmit={onSubmit}
-            initialValues={initialValues}
-            render={({ handleSubmit, submitting }) => (
-              <form onSubmit={handleSubmit} noValidate>
-                <Grid container spacing={1}>
-                  <Grid item md={8} xs={12}>
-                    <TextField
-                      label="Title"
-                      name="title"
-                      variant="outlined"
-                      disabled={submitting}
-                    />
-                  </Grid>
-                  <Grid item md={8} xs={12}>
-                    <TextField
-                      label="Description"
-                      name="body"
-                      variant="outlined"
-                      multiline
-                      rows={6}
-                      disabled={submitting}
-                    />
-                  </Grid>
-
-                  <Grid item md={8} xs={12}>
-                    <Button color="primary" onClick={handleSubmit} variant="contained">
-                      {params.id ? 'Update' : 'Save'}
-                    </Button>
-                    <Button color="primary" onClick={() => history.goBack()} variant="outlined">Cancel</Button>
-                  </Grid>
+      {initialValues && !loading ? (
+        <Form
+          onSubmit={onSubmit}
+          initialValues={initialValues}
+          render={({ handleSubmit, submitting }) => (
+            <form onSubmit={handleSubmit} noValidate>
+              <Grid container spacing={1}>
+                <Grid item md={12} xs={12}>
+                  <TextField
+                    label="Title"
+                    name="title"
+                    variant="outlined"
+                    disabled={submitting}
+                  />
                 </Grid>
-              </form>
-            )}
-          >
-          </Form>
-        ) : (
-            'Loading form ...'
+                <Grid item md={12} xs={12}>
+                  <TextField
+                    label="Description"
+                    name="body"
+                    variant="outlined"
+                    multiline
+                    rows={6}
+                    disabled={submitting}
+                  />
+                </Grid>
+
+                <Grid item md={12} xs={12}>
+                  <Button color="primary" onClick={handleSubmit} variant="contained">
+                    {params.id ? 'Update' : 'Save'}
+                  </Button>
+                  <Button color="primary" onClick={() => history.goBack()} variant="outlined">Cancel</Button>
+                </Grid>
+              </Grid>
+            </form>
           )}
-      </Container>
+        >
+        </Form>
+      ) : (
+          'Loading form ...'
+        )}
     </>
   );
 }

@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Button, ClickAwayListener, Container, Divider, Grid, Grow, IconButton, makeStyles, MenuItem, MenuList, Paper, Popper, Typography } from '@material-ui/core';
 import { MoreHoriz } from '@material-ui/icons';
+import { Skeleton } from '@material-ui/lab';
 import { TextField } from 'mui-rff';
 import React, { useEffect, useRef, useState } from 'react';
 import { Form } from 'react-final-form';
@@ -39,22 +40,7 @@ const useStyles = makeStyles((theme) => ({
     left: '35%'
   },
   iconContainer: {
-    '& .MuiIconButton-root:hover': {
-      backgroundColor: 'transparent'
-    },
-    '& .MuiIconButton-root': {
-      padding: '12px 0px 12px'
-    },
-    '& .MuiSvgIcon-root': {
-      marginRight: 15,
-      padding: 10,
-      borderRadius: 25,
-      border: '1px solid',
-      width: 48,
-      height: 48
-    },
-    display: 'flex',
-    alignItems: 'center',
+    marginBottom: theme.spacing(5)
   },
   commentContainer: {
     marginTop: theme.spacing(4),
@@ -144,97 +130,85 @@ const Post = () => {
 
   return (
     <>
-      <Container maxWidth="lg">
-        <Grid container spacing={1}>
-          <Grid md={12} item className={classes.iconContainer}>
-            <Link to="/">
-              <Typography variant="button" gutterBottom>Back</Typography>
-            </Link>
-          </Grid>
-          <Grid item md={8}>
-            <div className={classes.post} >
-              {initialValues && !loading ? (
-                <Paper variant="outlined" >
-                  <div className={classes.flex}>
-                    <Typography color="primary" variant="body1">{initialValues.title}</Typography>
-                    <IconButton size="small"
-                      ref={anchorRef}
-                      aria-controls={open ? 'menu-list-grow' : undefined}
-                      aria-haspopup="true"
-                      onClick={handleToggle}>
-                      <MoreHoriz />
-                    </IconButton>
-                  </div>
-                  <Popper open={open} anchorEl={anchorRef.current} placement="bottom-end" role={undefined} transition disablePortal>
-                    {({ TransitionProps }) => (
-                      <Grow
-                        {...TransitionProps}
-                        style={{ width: 250 }}
-                      >
-                        <Paper>
-                          <ClickAwayListener onClickAway={handleClose}>
-                            <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                              <MenuItem onClick={() => history.push(`/update/${initialValues.id}`)}>Edit Post</MenuItem>
-                              <MenuItem onClick={() => handleDelete(initialValues.id)}>Delete Post</MenuItem>
-                            </MenuList>
-                          </ClickAwayListener>
-                        </Paper>
-                      </Grow>
-                    )}
-                  </Popper>
-                  <Typography variant="caption" gutterBottom>{initialValues.body}</Typography>
-                  <div className={classes.commentContainer}>
-                    {comments ? (
-                      <Grid container>
-                        <Grid item xs={12}>
-                          <Typography gutterBottom color="primary" onClick={handleComment} variant="body2">{comments.data.length} comments</Typography>
-                          {showComments ? (
-                            <>
-                              <Divider />
-                              {comments.data.map((comment) => (
-                                <div key={comment.id} className={classes.marginTop} >
-                                  <Typography color="primary" variant="button">{comment.email}</Typography> {comment.body}
-                                </div>
-                              ))}
-                              <Form
-                                onSubmit={onSubmit}
-                                initialValues={blankFormComment}
-                                render={({ handleSubmit, submitting }) => (
-                                  <form noValidate onSubmit={handleSubmit}>
-                                    <TextField
-                                      name="body"
-                                      variant="outlined"
-                                      label=""
-                                      size="small"
-                                      fullWidth
-                                      placeholder="Write a comment"
-                                      disabled={submitting}
-                                    />
-                                    <Button color="primary" onClick={handleSubmit} variant="contained">Post a comment</Button>
-                                  </form>
-                                )}
-                              />
-                            </>
-                          ) : (
-                              ''
-                            )}
-                        </Grid>
-                        <Grid item xs={12}>
-
-                        </Grid>
+      <Grid container spacing={1}>
+        <Grid item md={12}>
+          <div className={classes.post} >
+            {initialValues && !loading ? (
+              <Paper variant="outlined" >
+                <div className={classes.flex}>
+                  <Typography color="primary" variant="body1">{initialValues.title}</Typography>
+                  <IconButton size="small"
+                    ref={anchorRef}
+                    aria-controls={open ? 'menu-list-grow' : undefined}
+                    aria-haspopup="true"
+                    onClick={handleToggle}>
+                    <MoreHoriz />
+                  </IconButton>
+                </div>
+                <Popper open={open} anchorEl={anchorRef.current} placement="bottom-end" role={undefined} transition disablePortal>
+                  {({ TransitionProps }) => (
+                    <Grow
+                      {...TransitionProps}
+                      style={{ width: 250 }}
+                    >
+                      <Paper>
+                        <ClickAwayListener onClickAway={handleClose}>
+                          <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                            <MenuItem onClick={() => history.push(`/update/${initialValues.id}`)}>Edit Post</MenuItem>
+                            <MenuItem onClick={() => handleDelete(initialValues.id)}>Delete Post</MenuItem>
+                          </MenuList>
+                        </ClickAwayListener>
+                      </Paper>
+                    </Grow>
+                  )}
+                </Popper>
+                <Typography variant="caption" gutterBottom>{initialValues.body}</Typography>
+                <div className={classes.commentContainer}>
+                  {comments ? (
+                    <Grid container>
+                      <Grid item xs={12}>
+                        <Typography gutterBottom color="primary" onClick={handleComment} variant="body2">{comments.data.length} comments</Typography>
+                        {showComments ? (
+                          <>
+                            <Divider />
+                            {comments.data.map((comment) => (
+                              <div key={comment.id} className={classes.marginTop} >
+                                <Typography color="primary" variant="button">{comment.email}</Typography> {comment.body}
+                              </div>
+                            ))}
+                            <Form
+                              onSubmit={onSubmit}
+                              initialValues={blankFormComment}
+                              render={({ handleSubmit, submitting }) => (
+                                <form noValidate onSubmit={handleSubmit}>
+                                  <TextField
+                                    name="body"
+                                    variant="outlined"
+                                    label=""
+                                    size="small"
+                                    fullWidth
+                                    placeholder="Write a comment"
+                                    disabled={submitting}
+                                  />
+                                  <Button color="primary" onClick={handleSubmit} variant="contained">Post a comment</Button>
+                                </form>
+                              )}
+                            />
+                          </>
+                        ) : ( null )}
                       </Grid>
-                    ) : (
-                        ''
-                      )}
-                  </div>
-                </Paper>
-              ) : (
-                  'Loading...'
-                )}
-            </div>
-          </Grid>
+                    </Grid>
+                  ) : (
+                      <Typography gutterBottom color="primary" onClick={handleComment} variant="body2">Add a comment</Typography>
+                    )}
+                </div>
+              </Paper>
+            ) : (
+                <Skeleton height="20" />
+              )}
+          </div>
         </Grid>
-      </Container>
+      </Grid>
     </>
   );
 }

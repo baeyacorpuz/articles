@@ -1,9 +1,10 @@
-import { makeStyles } from '@material-ui/core';
+import { Container, Grid, makeStyles } from '@material-ui/core';
 import React from 'react';
 import { HashRouter as Router } from 'react-router-dom';
 import './App.css';
 import './assets/css/main.scss';
 import Header from './components/header/header';
+import Sidenav from './components/header/sidenav';
 import RouteBlock from './routes/RouteBlock';
 
 const drawerWidth = 240
@@ -28,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-function App() {
+const App = () => {
+  
   const classes = useStyles();
   return (
     <div className="">
@@ -37,9 +39,16 @@ function App() {
           <Header />
           <div className={classes.appBar}>
             <div className={classes.toolbar} />
-            <div className="">
-              <RouteBlock />
-            </div>
+            <Container maxWidth="lg">
+              <Grid container spacing={1}>
+                <Grid item md={8}>
+                  <RouteBlock />
+                </Grid>
+                <Grid item md={4}>
+                  <Sidenav />
+                </Grid>
+              </Grid>
+            </Container>
           </div>
         </div>
       </Router>

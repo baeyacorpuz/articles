@@ -1,4 +1,4 @@
-import { ClickAwayListener, Container, Grid, Grow, Hidden, IconButton, makeStyles, MenuItem, MenuList, Paper, Popper, Typography } from '@material-ui/core';
+import { ClickAwayListener, Grid, Grow, IconButton, makeStyles, MenuItem, MenuList, Paper, Popper, Typography } from '@material-ui/core';
 import { MoreVert } from '@material-ui/icons';
 import { Skeleton } from '@material-ui/lab';
 import React, { useRef } from 'react';
@@ -86,61 +86,46 @@ const Dashboard = () => {
   return (
     <>
       {initialData ? (
-        <Container maxWidth="lg">
-          <Grid container spacing={3}>
-            <Grid item md={8} xs={12}>
-              <Grid container spacing={3}>
-                {initialData.data ? (
-                  initialData.data.map((post) => (
-                    <Grid item md={12} key={post.id}>
-                      <div
-                        className={classes.post}
-                      >
-                        <Paper id={post.id} variant="outlined" >
-                          <div className={classes.flex}>
-                            <Link to={`/posts/${post.id}`}>
-                              <Typography color="primary" variant="body1">{post.title}</Typography>
-                            </Link>
-                            <IconButton size="small"
-                              ref={anchorRef}
-                              aria-controls={open ? 'menu-list-grow' : undefined}
-                              aria-haspopup="true"
-                              onClick={handleToggle}>
-                              <MoreVert />
-                            </IconButton>
-                          </div>
-                          <Typography variant="caption" gutterBottom>{post.body}</Typography>
-                        </Paper>
+        <Grid container>
+          <Grid item md={12} xs={12}>
+            <Grid container spacing={1}>
+              {initialData.data ? (
+                initialData.data.map((post) => (
+                  <Grid item md={12} key={post.id}>
+                    <div
+                      className={classes.post}
+                    >
+                      <Paper id={post.id} variant="outlined" >
+                        <div className={classes.flex}>
+                          <Link to={`/posts/${post.id}`}>
+                            <Typography color="primary" variant="body1">{post.title}</Typography>
+                          </Link>
+                          <IconButton size="small"
+                            ref={anchorRef}
+                            aria-controls={open ? 'menu-list-grow' : undefined}
+                            aria-haspopup="true"
+                            onClick={handleToggle}>
+                            <MoreVert />
+                          </IconButton>
+                        </div>
+                        <Typography variant="caption" gutterBottom>{post.body}</Typography>
+                      </Paper>
 
-                      </div>
-                    </Grid>
-                  ))
-                ) : ''}
-              </Grid>
-            </Grid>
-            <Grid item md={4}>
-              <Hidden xsDown implementation="css">
-                <Sidenav />
-              </Hidden>
+                    </div>
+                  </Grid>
+                ))
+              ) : ''}
             </Grid>
           </Grid>
-        </Container>
+        </Grid>
       ) : (
-          <Container maxWidth="lg">
-
-            <Grid container spacing={1}>
-              <Grid item md={8}>
-                <Skeleton height="20" />
-                <Skeleton height="20" />
-                <Skeleton height="20" />
-              </Grid>
-              <Grid item md={4}>
-                <Skeleton height="20" />
-                <Skeleton height="20" />
-                <Skeleton height="20" />
-              </Grid>
+          <Grid container spacing={1}>
+            <Grid item md={12}>
+              <Skeleton height="20" />
+              <Skeleton height="20" />
+              <Skeleton height="20" />
             </Grid>
-          </Container>
+          </Grid>
         )}
       <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
         {({ TransitionProps, placement }) => (

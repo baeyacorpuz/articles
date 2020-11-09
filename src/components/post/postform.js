@@ -41,7 +41,7 @@ const PostForm = (editMode) => {
 
   return (
     <>
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         {initialValues && !loading ? (
           <Form
             onSubmit={onSubmit}
@@ -49,7 +49,7 @@ const PostForm = (editMode) => {
             render={({ handleSubmit, submitting }) => (
               <form onSubmit={handleSubmit} noValidate>
                 <Grid container spacing={1}>
-                  <Grid item xs={12}>
+                  <Grid item md={8} xs={12}>
                     <TextField
                       label="Title"
                       name="title"
@@ -57,7 +57,7 @@ const PostForm = (editMode) => {
                       disabled={submitting}
                     />
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item md={8} xs={12}>
                     <TextField
                       label="Description"
                       name="body"
@@ -68,7 +68,7 @@ const PostForm = (editMode) => {
                     />
                   </Grid>
 
-                  <Grid item xs={12}>
+                  <Grid item md={8} xs={12}>
                     <Button color="primary" onClick={handleSubmit} variant="contained">
                       {params.id ? 'Update' : 'Save'}
                     </Button>

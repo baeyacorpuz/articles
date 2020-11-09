@@ -96,12 +96,11 @@ const theme = createMuiTheme({
     },
     MuiButton: {
       contained: {
-        boxShadow: "none"
+        boxShadow: 'none'
       },
       root: {
         marginRight: 15,
-        width: 120
-        // padding: '5px 32px'
+        minWidth: 120
       }
     }
   }

@@ -44,3 +44,12 @@ export const deletePost = async (id) => {
 
   return apiResponse;
 }
+
+export const getComments = async (id) => {
+  const apiResponse = await Axios
+  .get(`https://jsonplaceholder.typicode.com/posts/${id}/comments`)
+  .then((response) => response)
+  .catch((error) => error.respons);
+
+  return apiResponse;
+}

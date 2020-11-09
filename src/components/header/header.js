@@ -48,8 +48,16 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    padding: '0 16px',
-  }
+    '& a.brand.active': {
+      height: '100%'
+    },
+    '& .MuiListItem-button': {
+      height: '100%'
+    },
+    '& a.brand.active:active': {
+      backgroundColor: 'rgba(0, 0, 0, 0.04)'
+    }
+  },
 }))
 
 const menu = [
@@ -186,17 +194,17 @@ const Header = (props) => {
             {/* Sidenav small screens */}
             <div className={classes.brandContainer}>
               <NavLink to="/">
-                <Typography color="primary" variant="h5">Articles</Typography>
-                <Typography color="primary" variant="body2">v 1.0.0</Typography>
+                <ListItem button>
+                  <Typography color="primary" variant="h5">Articles</Typography>
+                  <Typography color="primary" variant="body2">v {process.env.REACT_APP_VERSION}</Typography>
+                </ListItem>
               </NavLink>
             </div>
             {menu.map((menu) => (
               <NavLink to={menu.to} key={menu.to}>
-                <List>
-                  <ListItem button>
-                    <Typography variant="overline" color="primary">{menu.label}</Typography>
-                  </ListItem>
-                </List>
+                <ListItem button>
+                  <Typography variant="overline" color="primary">{menu.label}</Typography>
+                </ListItem>
               </NavLink>
             ))}
           </Drawer>
@@ -212,9 +220,11 @@ const Header = (props) => {
           >
             {/* Sidenav large screens */}
             <div className={classes.brandContainer}>
-              <NavLink to="/">
-                <Typography color="primary" variant="h5">Articles</Typography>
-                <Typography color="primary" variant="body2">v {process.env.REACT_APP_VERSION}</Typography>
+              <NavLink to="/" className="brand">
+                <ListItem button>
+                  <Typography color="primary" variant="h5">Articles</Typography>
+                  <Typography color="primary" variant="body2">v {process.env.REACT_APP_VERSION}</Typography>
+                </ListItem>
               </NavLink>
             </div>
             <List>

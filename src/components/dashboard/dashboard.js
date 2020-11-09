@@ -4,7 +4,7 @@ import { Skeleton } from '@material-ui/lab';
 import React, { useRef } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import { deletePost, listPosts } from '../../apis/posts';
 import Sidenav from '../header/sidenav';
 
@@ -98,7 +98,9 @@ const Dashboard = () => {
                       >
                         <Paper id={post.id} variant="outlined" >
                           <div className={classes.flex}>
-                            <Typography color="primary" onClick={() => history.push(`/posts/${post.id}`)} variant="body1">{post.title}</Typography>
+                            <Link to={`/posts/${post.id}`}>
+                              <Typography color="primary" variant="body1">{post.title}</Typography>
+                            </Link>
                             <IconButton size="small"
                               ref={anchorRef}
                               aria-controls={open ? 'menu-list-grow' : undefined}
@@ -124,10 +126,17 @@ const Dashboard = () => {
           </Grid>
         </Container>
       ) : (
-          <Container maxWidth="md">
+          <Container maxWidth="lg">
 
             <Grid container spacing={1}>
-              <Grid item xs={12}>
+              <Grid item md={8}>
+                <Skeleton height="20" />
+                <Skeleton height="20" />
+                <Skeleton height="20" />
+              </Grid>
+              <Grid item md={4}>
+                <Skeleton height="20" />
+                <Skeleton height="20" />
                 <Skeleton height="20" />
               </Grid>
             </Grid>

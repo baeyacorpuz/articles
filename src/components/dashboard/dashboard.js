@@ -1,4 +1,4 @@
-import { Button, ClickAwayListener, Container, Grid, Grow, IconButton, makeStyles, MenuItem, MenuList, Modal, Paper, Popper, Typography } from '@material-ui/core';
+import { ClickAwayListener, Container, Grid, Grow, Hidden, IconButton, makeStyles, MenuItem, MenuList, Paper, Popper, Typography } from '@material-ui/core';
 import { MoreVert } from '@material-ui/icons';
 import { Skeleton } from '@material-ui/lab';
 import React, { useRef } from 'react';
@@ -12,8 +12,7 @@ const useStyles = makeStyles((theme) => ({
   post: {
     '& .MuiPaper-root.MuiPaper-outlined': {
       padding: theme.spacing(3),
-      borderRadius: 16,
-      border: 'transparent'
+      borderRadius: 7,
     }
   },
   flex: {
@@ -27,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiTypography-body1': {
       overflowWrap: 'break-word',
       paddingRight: 15
-    }
+    },
+    marginBottom: '1.5rem'
   },
   paper: {
     position: 'absolute',
@@ -40,40 +40,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function getModalStyle() {
-  const top = 50
-  const left = 50
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
-
-const Content = (props) => {
-  return (
-
-    <div style={props.modalStyle} className={props.classes}>
-      <h2 id="simple-modal-title">Attention!</h2>
-      <p id="simple-modal-description">
-        You are about to delete a post.
-    </p>
-      <Grid item xs={12}>
-        <Button color="primary" size="small" onClick={() => props.handleDelete(props.id)} variant="contained">Proceed</Button>
-        <Button color="primary" size="small" onClick={props.handleClose} variant="outlined">Cancel</Button>
-      </Grid>
-    </div>
-  )
-}
-
 const Dashboard = () => {
   const classes = useStyles();
   const history = useHistory();
   const [initialData, setInitialData] = useState(null);
-  const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
-  const [id, setID] = useState(null);
+  const anchorRef = useRef(null);
 
   useEffect(() => {
     loadInitialData();
@@ -83,33 +55,38 @@ const Dashboard = () => {
     setInitialData(await listPosts())
   }
 
-  const handleDelete = async (id) => {
-    console.log(id)
-    
-    const apiResponse = await deletePost(id);
-    if (apiResponse.status === 200) {
-      loadInitialData();
-      handleClose();
-    } else {
-      console.log('error')
-    }
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
   }
 
-  const handleOpen = (id) => {
-    setOpen(true);
-    setID(id)
-  };
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
 
-  const handleClose = () => {
     setOpen(false);
   };
 
+  const handleListKeyDown = (event) => {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
 
+  const prevOpen = React.useRef(open);
+  useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
 
   return (
     <>
       {initialData ? (
-        <Container maxWidth="md">
+        <Container maxWidth="lg">
           <Grid container spacing={3}>
             <Grid item md={8} xs={12}>
               <Grid container spacing={3}>
@@ -122,16 +99,15 @@ const Dashboard = () => {
                         <Paper id={post.id} variant="outlined" >
                           <div className={classes.flex}>
                             <Typography color="primary" onClick={() => history.push(`/posts/${post.id}`)} variant="body1">{post.title}</Typography>
-                            {/* <IconButton size="small" onClick={handleToggle}>
+                            <IconButton size="small"
+                              ref={anchorRef}
+                              aria-controls={open ? 'menu-list-grow' : undefined}
+                              aria-haspopup="true"
+                              onClick={handleToggle}>
                               <MoreVert />
-                            </IconButton> */}
-                            {/* <Typography color="primary" onClick={() => history.push(`/update/${post.id}`)} variant="button">Edit</Typography> */}
+                            </IconButton>
                           </div>
                           <Typography variant="caption" gutterBottom>{post.body}</Typography>
-                          <Grid item xs={12}>
-                            <Button color="primary" size="small" onClick={() => history.push(`/update/${post.id}`)} variant="contained">Update</Button>
-                            <Button color="primary" size="small" onClick={() => handleOpen(post.id)} variant="outlined">Delete</Button>
-                          </Grid>
                         </Paper>
 
                       </div>
@@ -141,7 +117,9 @@ const Dashboard = () => {
               </Grid>
             </Grid>
             <Grid item md={4}>
-              <Sidenav />
+              <Hidden xsDown implementation="css">
+                <Sidenav />
+              </Hidden>
             </Grid>
           </Grid>
         </Container>
@@ -155,19 +133,22 @@ const Dashboard = () => {
             </Grid>
           </Container>
         )}
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-        <Content
-          handleDelete={handleDelete}
-          handleClose={handleClose}
-          id={id}
-          modalstyle={modalStyle}
-          classes={classes.paper} />
-      </Modal>
+      <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+          >
+            <Paper>
+              <ClickAwayListener onClickAway={handleClose}>
+                <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                  <MenuItem onClick={handleClose}>Profile</MenuItem>
+                </MenuList>
+              </ClickAwayListener>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
     </>
   );
 }

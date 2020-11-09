@@ -1,4 +1,4 @@
-import { AppBar, Avatar, ClickAwayListener, Divider, Drawer, Grow, Hidden, IconButton, List, ListItem, ListItemText, makeStyles, MenuItem, MenuList, Paper, Popper, Toolbar, Typography, useTheme } from '@material-ui/core';
+import { AppBar, ClickAwayListener, Divider, Drawer, Grow, Hidden, IconButton, List, ListItem, makeStyles, MenuItem, MenuList, Paper, Popper, Toolbar, Typography, useTheme } from '@material-ui/core';
 import { AccountCircle, AddCircle, Menu } from '@material-ui/icons';
 import React, { useRef, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
@@ -18,13 +18,6 @@ const useStyles = makeStyles((theme) => ({
       width: drawerWidth,
       flexShrink: 0,
     },
-    '& .MuiDrawer-paperAnchorDockedLeft': {
-      borderRight: 'none',
-      padding: 16
-    },
-    '& .MuiDrawer-paper': {
-      top: 'auto'
-    }
   },
   toolbar: {
     [theme.breakpoints.up('sm')]: {
@@ -36,59 +29,51 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    '& .MuiDrawer-paperAnchorDockedLeft': {
-      borderRight: 'none'
-    },
     '& .MuiDrawer-paper': {
       top: 'none'
     },
-
+    '& .MuiList-padding': {
+      padding: 0
+    }
   },
   appBar: {
     [theme.breakpoints.up('sm')]: {
-      // width: `calc(100% - ${drawerWidth}px)`,
-      // marginLeft: drawerWidth,
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth,
     },
-    '& .MuiToolbar-root.MuiToolbar-regular': {
-      [theme.breakpoints.up('sm')]: {
-        padding: 0
-      },
-    }
   },
-  list: {
-    width: 238,
-    '& .MuiSvgIcon-root': {
-      color: '#0048B4'
-    },
-    '& .MuiListItem-root': {
-      textTransform: 'uppercase'
-    }
-  },
-  link: {
-    '& .MuiListItem-button': {
-      height: 70
-    }
-  },
-  brandName: {
-    '& .MuiTypography-root': {
-      fontWeight: 700
-    }
-  },
-  header: {
-    '& .MuiPaper-elevation4': {
-      boxShadow: 'none'
-    }
-  }, 
-  menu: {
-    '& .MuiListItem-root': {
-      paddingTop: 0,
-      paddingBottom: 0
-    },
-    '& .MuiListItem-gutters': {
-      padding: 0
-    }
+  brandContainer: {
+    height: 70,
+    borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    padding: '0 16px',
   }
 }))
+
+const menu = [
+  {
+    label: 'Reading Lists',
+    to: '/reading-list'
+  },
+  {
+    label: 'Listings',
+    to: '/listings',
+  },
+  {
+    label: 'Podcasts',
+    to: '/podcasts'
+  },
+  {
+    label: 'Videos',
+    to: '/videos'
+  },
+  {
+    label: 'Tags',
+    to: '/tags'
+  }
+]
 
 const Header = (props) => {
   const { window } = props;
@@ -96,7 +81,6 @@ const Header = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
-  // const [anchorEl, setAnchorEl] = useState(null);
   const anchorEl = useRef(null);
   const [open, setOpen] = useState(false);
 
@@ -149,20 +133,15 @@ const Header = (props) => {
               <Menu />
             </IconButton>
           </Hidden>
+
+          {/* Toolbar for large screens */}
           <Hidden xsDown implementation="css">
-            <NavLink to="/">
-              <ListItem button>
-                <ListItemText className={classes.brandName}>
-                  <Typography variant="h4">App<i>Name</i></Typography>
-                </ListItemText>
-              </ListItem>
-            </NavLink>
           </Hidden>
           <div>
-            <IconButton onClick={() => history.push("/add")}>
+            <IconButton onClick={() => history.push("/add")} color="secondary">
               <AddCircle />
             </IconButton>
-            <IconButton ref={anchorEl} onClick={handleToggle}>
+            <IconButton ref={anchorEl} onClick={handleToggle} color="primary">
               <AccountCircle />
             </IconButton>
             <Popper open={open} anchorEl={anchorEl.current} role={undefined} transition disablePortal>
@@ -204,24 +183,22 @@ const Header = (props) => {
             }}
             elevation={16}
           >
-            <NavLink to="/" className={classes.link}>
-              <ListItem button>
-                <ListItemText>
-                  <Typography variant="h4">App<i>Name</i></Typography>
-                  <Typography variant="body2">Mobile</Typography>
-                </ListItemText>
-              </ListItem>
-            </NavLink>
-            <Divider />
-            <List className={classes.list}>
-              <NavLink to="/installation">
-                <ListItem button>
-                  <ListItemText>
-                    <Typography variant="body2">Profile</Typography>
-                  </ListItemText>
-                </ListItem>
+            {/* Sidenav small screens */}
+            <div className={classes.brandContainer}>
+              <NavLink to="/">
+                <Typography color="primary" variant="h5">Articles</Typography>
+                <Typography color="primary" variant="body2">v 1.0.0</Typography>
               </NavLink>
-            </List>
+            </div>
+            {menu.map((menu) => (
+              <NavLink to={menu.to} key={menu.to}>
+                <List>
+                  <ListItem button>
+                    <Typography variant="overline" color="primary">{menu.label}</Typography>
+                  </ListItem>
+                </List>
+              </NavLink>
+            ))}
           </Drawer>
         </Hidden>
         <Hidden xsDown implementation="css">
@@ -233,34 +210,28 @@ const Header = (props) => {
             open
             elevation={16}
           >
-            <Avatar className={classes.purple}>OP</Avatar>
-            <List className={classes.menu}>
+            {/* Sidenav large screens */}
+            <div className={classes.brandContainer}>
               <NavLink to="/">
-                <ListItem button>
-                  <ListItemText className={classes.brandName}>
-                    <Typography variant="subtitle1">Listings</Typography>
-                  </ListItemText>
-                </ListItem>
+                <Typography color="primary" variant="h5">Articles</Typography>
+                <Typography color="primary" variant="body2">v {process.env.REACT_APP_VERSION}</Typography>
               </NavLink>
-              <NavLink to="/">
-                <ListItem button>
-                  <ListItemText className={classes.brandName}>
-                    <Typography variant="subtitle1">Podcast</Typography>
-                  </ListItemText>
-                </ListItem>
-              </NavLink>
-              <NavLink to="/">
-                <ListItem button>
-                  <ListItemText className={classes.brandName}>
-                    <Typography variant="subtitle1">Videos</Typography>
-                  </ListItemText>
-                </ListItem>
-              </NavLink>
+            </div>
+            <List>
+              {menu.map((menu) => (
+                <NavLink to={menu.to} key={menu.to}>
+                  <ListItem button>
+                    <Typography variant="overline" color="primary">{menu.label}</Typography>
+                  </ListItem>
+                </NavLink>
+              ))}
             </List>
+            <Divider />
+
           </Drawer>
         </Hidden>
       </nav>
-    </div>
+    </div >
   );
 }
 

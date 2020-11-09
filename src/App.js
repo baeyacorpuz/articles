@@ -16,18 +16,13 @@ const useStyles = makeStyles((theme) => ({
     },
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(10),
-    '& .MuiToolbar-root.MuiToolbar-regular': {
-      [theme.breakpoints.up('sm')]: {
-        padding: 0
-      },
-    }
   },
   toolbar: {
     [theme.breakpoints.up('sm')]: {
-      height: 70
+      height: 50
     },
     [theme.breakpoints.down('xs')]: {
-      height: 70
+      height: 50
     },
   }
 }))

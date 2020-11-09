@@ -32,7 +32,6 @@ const PostForm = (editMode) => {
   }, [])
 
   const onSubmit = async (values) => {
-    console.log(values)
     if (params.id) {
       return await updatePost(params.id, values)
     } else {
@@ -43,7 +42,7 @@ const PostForm = (editMode) => {
   return (
     <>
       <Container maxWidth="md">
-        {initialValues ? (
+        {initialValues && !loading ? (
           <Form
             onSubmit={onSubmit}
             initialValues={initialValues}

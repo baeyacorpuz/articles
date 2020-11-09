@@ -88,23 +88,21 @@ const Post = () => {
   const [id, setID] = useState(null);
 
   useEffect(() => {
-    setIsLoading(false);
     const loadInitialFormData = async () => {
       if (params.id) {
         const initialData = await getPost(params.id)
         setInitialValues(initialData.data)
       }
     };
+    setIsLoading(false);
 
     loadInitialFormData();
   }, [])
 
   const handleDelete = async (id) => {
-    console.log(id)
 
     const apiResponse = await deletePost(id);
     if (apiResponse.status === 200) {
-      // loadInitialData();
       handleClose();
     } else {
       console.log('error')
@@ -132,7 +130,7 @@ const Post = () => {
           </Grid>
           <Grid item md={8}>
             <div className={classes.post} >
-              {initialValues ? (
+              {initialValues && !loading ? (
                 <Paper variant="outlined" >
                   <div className={classes.flex}>
                     <Typography color="primary" variant="body1">{initialValues.title}</Typography>

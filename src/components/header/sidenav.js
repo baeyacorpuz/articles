@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Avatar, Divider, Grid, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Divider, Grid, makeStyles, Paper, Typography } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
 import { listNews } from '../../apis/news';
+import { NavLink } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -23,10 +24,12 @@ const useStyles = makeStyles((theme) => ({
   newsList: {
     '& .MuiPaper-outlined': {
       padding: 16,
-      borderRadius: 16,
-      border: 'transparent'
+      borderRadius: 7,
     }
   },
+  container: {
+    marginBottom: theme.spacing(3)
+  }
 }))
 
 const Sidenav = () => {
@@ -53,9 +56,11 @@ const Sidenav = () => {
 
               {initialData.data.articles !== undefined ? (
                 initialData.data.articles.map((news, index) => (
-                  <div key={index}>
-                    <Typography variant="body1">{news.title}</Typography>
-                    <Typography variant="overline" gutterBottom>{news.author}</Typography>
+                  <div className={classes.container} key={index}>
+                    <NavLink to={"/"}>
+                      <Typography color="primary" variant="body1">{news.title}</Typography>
+                    </NavLink>
+                    <Typography variant="caption" gutterBottom>{news.author}</Typography>
                   </div>
                 ))
               ) : (

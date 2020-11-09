@@ -13,25 +13,7 @@ body .MuiPaper-elevation1 {
   box-shadow: none;
   border: 1px solid #e0e6ed;
 }
-// button.MuiButtonBase-root {
-//   margin: 15px 0px;
-// }
 
-.cd-button-group-sorter button {
-  background: white;
-  color: #7f7f7f;
-  border: 1px solid #e0e6ed;
-  font-weight: 400;
-  border-radius: 0px;
-}
-button.cd-button-action {
-  margin: 0;
-  font-size: 14px;
-  padding: 3px 10px;
-  margin-top: -9px;
-  margin-bottom: -8px;
-  width: 100%;
-}
 body .MuiPaginationItem-page {
   padding: 0;
   height: 27px;
@@ -56,97 +38,6 @@ body .MuiPaper-root {
   -webkit-box-shadow: none;
   box-shadow: none;
   // border-radius: 0;
-}
-.data-table-footer {
-  text-align: center;
-  padding: 10px;
-}
-
-.cd-status-label.status-for-receipt,
-.cd-status-label.status-for-deposit {
-  color: $orange;
-}
-
-.cd-status-label.status-cancelled {
-  color: $light-grey;
-}
-.cd-status-label.status-bounced {
-  color: $error;
-}
-.cd-status-label.status-clearing,
-.cd-status-label.status-cleared {
-  color: $primary;
-}
-
-//table
-.search-layout button.MuiButtonBase-root.MuiIconButton-root[class*='MUIDataTableSearch'] {
-  display: none;
-}
-.data-search-field .MuiTextField-root input {
-  position: relative;
-  z-index: 1;
-  padding-right: 38px;
-}
-.data-search-field {
-  position: relative;
-  width: auto;
-}
-.data-search-field svg.MuiSvgIcon-root {
-  position: absolute;
-  right: 14px;
-  z-index: 9;
-  top: 9px;
-  width: 23px;
-  height: auto;
-}
-
-label[for='total_amount'].MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl:after {
-  content: ' (Peso)';
-}
-label[for='total_amount'].MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl {
-  position: relative;
-  margin-bottom: -14px;
-}
-div[class*='MUIDataTableFilter-header'] {
-  margin-bottom: 0;
-}
-div[class*='MUIDataTableFilter-header'] p,
-div[class*='MUIDataTableFilter-header'] button {
-  margin: 0;
-}
-div[class*='MUIDataTableFilterList-root'] {
-  display: none;
-}
-
-table div[class*='MUIDataTableHeadCell-sortAction'] svg {
-  position: absolute;
-}
-
-.MuiButtonBase-root.MuiTableSortLabel-root svg {
-  display: none;
-}
-
-.MuiToolbar-root.MuiToolbar-regular {
-  min-height: 1px;
-  right: 0;
-  position: relative;
-}
-.MuiToolbar-root.MuiToolbar-regular div[class*='MUIDataTableToolbar-actions'] {
-  position: absolute;
-  right: 10px;
-  z-index: 101;
-  top: 13px;
-}
-.MuiToolbar-root.MuiToolbar-regular div[class*='MUIDataTableToolbar-actions'] button {
-  margin: 0;
-  padding: 0;
-}
-.MuiToolbar-root.MuiToolbar-regular div[class*='MUIDataTableToolbar-actions'] span.MuiIconButton-label svg {
-  display: none;
-}
-
-.MuiToolbar-gutters {
-  padding: 16px;
 }
 
 /*table sorting icons overrides */

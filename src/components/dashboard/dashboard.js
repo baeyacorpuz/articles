@@ -61,7 +61,10 @@ const Dashboard = () => {
 
   const handleDelete = async () => {
     console.log('here')
-    await(deletePost(id))
+    const apiResponse = await(deletePost(id))
+    if (apiResponse) {
+      console.log(apiResponse)
+    }
   }
 
 

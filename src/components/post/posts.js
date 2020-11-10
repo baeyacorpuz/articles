@@ -129,7 +129,10 @@ const Post = () => {
   }, [open]);
 
   const handleDelete = async (id) => {
-    await deletePost(id)
+    const apiResponse = await(deletePost(id))
+    if (apiResponse) {
+      console.log(apiResponse)
+    }
     history.goBack()
   }
 

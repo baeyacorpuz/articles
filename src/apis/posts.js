@@ -9,9 +9,10 @@ export const listPosts = async () => {
   return apiResponse;
 }
 
-export const createPost = async () => {
+export const createPost = async (values) => {
+  console.log(values)
   const apiResponse = await Axios
-  .post('https://jsonplaceholder.typicode.com/posts')
+  .post('https://jsonplaceholder.typicode.com/posts', values)
   .then((response) => response)
   .catch((error) => error.respons);
 
@@ -27,9 +28,9 @@ export const getPost = async (id) => {
   return apiResponse;
 }
 
-export const updatePost = async (id) => {
+export const updatePost = async (id, values) => {
   const apiResponse = await Axios
-  .put(`https://jsonplaceholder.typicode.com/posts/${id}`)
+  .put(`https://jsonplaceholder.typicode.com/posts/${id}`, values)
   .then((response) => response)
   .catch((error) => error.respons);
 

@@ -11,6 +11,7 @@ const PostForm = (editMode) => {
   const history = useHistory();
   const [loading, setIsLoading] = useState(true);
   const [initialValues, setInitialValues] = useState(null)
+  const userId = 1
 
   const blankFormValues = {
     title: '',
@@ -34,9 +35,22 @@ const PostForm = (editMode) => {
 
   const onSubmit = async (values) => {
     if (params.id) {
-      return await updatePost(params.id, values)
+      values.userId = initialValues.userId;
+      values.id = params.id;
+      const apiResponse = await updatePost(params.id, values);
+      if (apiResponse.status === 200) {
+        alert('Success')
+        history.push(`/posts/${apiResponse.data.id}`)
+      }
+
     } else {
-      return await createPost(values)
+      values.userId = userId;
+      const apiResponse = await createPost(values)
+      console.log(apiResponse)
+      if (apiResponse.status === 201) {
+        alert('Post created!', apiResponse.data.id)
+        history.push(`/`)
+      }
     }
   }
 

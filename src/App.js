@@ -7,17 +7,8 @@ import Header from './components/header/header';
 import Sidenav from './components/header/sidenav';
 import RouteBlock from './routes/RouteBlock';
 
-const drawerWidth = 240
 
 const useStyles = makeStyles((theme) => ({
-  appBar: {
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(10),
-  },
   toolbar: {
     [theme.breakpoints.up('sm')]: {
       height: 50

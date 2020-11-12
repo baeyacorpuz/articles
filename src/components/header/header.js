@@ -1,4 +1,4 @@
-import { AppBar, ClickAwayListener, Divider, Drawer, Grow, Hidden, IconButton, List, ListItem, makeStyles, MenuItem, MenuList, Paper, Popper, Toolbar, Typography, useTheme } from '@material-ui/core';
+import { AppBar, ClickAwayListener, Drawer, Grow, Hidden, IconButton, ListItem, makeStyles, MenuItem, MenuList, Paper, Popper, Toolbar, Typography, useTheme } from '@material-ui/core';
 import { AccountCircle, AddCircle, Menu } from '@material-ui/icons';
 import React, { useRef, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
@@ -35,12 +35,6 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiList-padding': {
       padding: 0
     }
-  },
-  appBar: {
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
   },
   brandContainer: {
     height: 70,
@@ -207,37 +201,6 @@ const Header = (props) => {
                 </ListItem>
               </NavLink>
             ))}
-          </Drawer>
-        </Hidden>
-        <Hidden xsDown implementation="css">
-          <Drawer
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            variant="permanent"
-            open
-            elevation={16}
-          >
-            {/* Sidenav large screens */}
-            <div className={classes.brandContainer}>
-              <NavLink to="/" className="brand">
-                <ListItem button>
-                  <Typography color="primary" variant="h5">Articles</Typography>
-                  <Typography color="primary" variant="body2">v {process.env.REACT_APP_VERSION}</Typography>
-                </ListItem>
-              </NavLink>
-            </div>
-            <List>
-              {menu.map((menu) => (
-                <NavLink to={menu.to} key={menu.to}>
-                  <ListItem button>
-                    <Typography variant="overline" color="primary">{menu.label}</Typography>
-                  </ListItem>
-                </NavLink>
-              ))}
-            </List>
-            <Divider />
-
           </Drawer>
         </Hidden>
       </nav>
